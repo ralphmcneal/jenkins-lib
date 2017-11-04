@@ -10,12 +10,20 @@ class HelloTest extends BasePipelineTestCase {
     }
 
     @Test
-    void testScript() throws Exception {
+    void callScript() throws Exception {
         def script = loadScript("vars/hello.groovy")
 
-        script.call("test")
+        script.call("World")
 
-        verify("sh", "echo test")
-        verify("echo", "It Works, test.")
+        verify("echo", "Hello World!")
+    }
+
+    @Test
+    void callScript_whenNoArgsPassed() throws Exception {
+        def script = loadScript("vars/hello.groovy")
+
+        script.call()
+
+        verify("echo", "Hello There!")
     }
 }
