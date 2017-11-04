@@ -1,9 +1,9 @@
 package vars
 
-import com.lesfurets.jenkins.unit.BasePipelineTest;
+import com.lesfurets.jenkins.unit.BasePipelineTest
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals
+import static org.junit.Assert.assertTrue
 
 public class BasePipelineTestCase extends BasePipelineTest {
     void verify(String method, String args) {
@@ -15,7 +15,7 @@ public class BasePipelineTestCase extends BasePipelineTest {
                 call.methodName == method
         }
 
-        assertTrue("Expected invocations of \'$method\' are incorrect. Wanted $count but recieved ${all?.size()}", all?.size() == count)
+        assertTrue("Expected invocations of \'$method\' are incorrect. Wanted $count but received ${all?.size()}", all?.size() == count)
 
         all.each { call ->
                 assertEquals("Expected args are incorrect", args, call.argsToString())
