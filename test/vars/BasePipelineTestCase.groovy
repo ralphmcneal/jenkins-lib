@@ -15,7 +15,7 @@ public class BasePipelineTestCase extends BasePipelineTest {
                 call.methodName == method
         }
 
-        assertTrue("Expected invocations to \'$method\' are incorrect. Wanted $count recieved ${all?.size()}", all?.size() == count)
+        assertTrue("Expected invocations of \'$method\' are incorrect. Wanted $count but recieved ${all?.size()}", all?.size() == count)
 
         all.each { call ->
                 assertEquals("Expected args are incorrect", args, call.argsToString())
