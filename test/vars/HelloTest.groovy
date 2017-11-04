@@ -15,7 +15,7 @@ class HelloTest extends BasePipelineTestCase {
 
         script.call("test")
 
-        verify("sh", "test")
+        verify("sh", "echo test")
         verify("echo", "It Works, test.")
     }
 }
