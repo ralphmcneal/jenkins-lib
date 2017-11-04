@@ -10,7 +10,7 @@ class HelloTest extends BasePipelineTestCase {
     }
 
     @Test
-    void callScript() throws Exception {
+    void call() throws Exception {
         def script = loadScript("vars/hello.groovy")
 
         script.call("World")
@@ -19,7 +19,7 @@ class HelloTest extends BasePipelineTestCase {
     }
 
     @Test
-    void callScript_whenNoArgsPassed() throws Exception {
+    void call_whenNoArgsPassed() throws Exception {
         def script = loadScript("vars/hello.groovy")
 
         script.call()
