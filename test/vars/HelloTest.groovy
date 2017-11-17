@@ -2,27 +2,28 @@ package vars
 
 import org.junit.Before
 import org.junit.Test
+import ralphmcneal.jenkins.PipelineSupport
 
-class HelloTest extends BasePipelineTestCase {
+class HelloTest extends PipelineSupport {
+    def scriptUnderTest
+
     @Before
-    void setUp() throws Exception {
-        super.setUp()
+    void setup() {
+        scriptUnderTest = loadScript("vars/hello.groovy")
     }
 
     @Test
     void call() throws Exception {
-        def script = loadScript("vars/hello.groovy")
 
-        script.call("World")
+        scriptUnderTest.call("World")
 
         verify("echo", "Hello World!")
     }
 
     @Test
     void call_whenNoArgsPassed() throws Exception {
-        def script = loadScript("vars/hello.groovy")
 
-        script.call()
+        scriptUnderTest.call()
 
         verify("echo", "Hello There!")
     }

@@ -1,23 +1,29 @@
-package vars
+package ralphmcneal.jenkins
 
 import com.lesfurets.jenkins.unit.BasePipelineTest
+import org.junit.Before
 
 import static junit.framework.TestCase.assertEquals
 import static org.junit.Assert.assertTrue
 
-public class BasePipelineTestCase extends BasePipelineTest {
+public class PipelineSupport extends BasePipelineTest {
+    @Before
+    void setUp() throws Exception {
+        super.setUp()
+    }
+
     void verify(String method, String args) {
         verify(1, method, args)
     }
 
     void verify(int count, String method, String args) {
-        def all = helper.callStack.findAll { call ->
+        def methodCalls = helper.callStack.findAll { call ->
                 call.methodName == method
         }
 
-        assertTrue("Expected invocations of \'$method\' are incorrect. Wanted $count but received ${all?.size()}", all?.size() == count)
+        assertTrue("Expected invocations of \'$method\' are incorrect. Wanted $count but received ${methodCalls?.size()}", methodCalls?.size() == count)
 
-        all.each { call ->
+        methodCalls.each { call ->
                 assertEquals("Expected args are incorrect", args, call.argsToString())
         }
     }
